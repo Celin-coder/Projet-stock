@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    // Force Laravel à lier ce modèle "Product" à votre table "product"
+    protected $table = 'product'; 
+
     protected $fillable = [
         'store_id',
         'category_id',
@@ -21,36 +24,30 @@ class Product extends Model
         'is_active',
     ];
 
-
     public function store()
     {
         return $this->belongsTo(Store::class);
     }
-
 
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
 
-
     public function supplier()
     {
         return $this->belongsTo(Supplier::class);
     }
-
 
     public function stockMovements()
     {
         return $this->hasMany(StockMovement::class);
     }
 
-
     public function purchaseItems()
     {
         return $this->hasMany(PurchaseItem::class);
     }
-
 
     public function saleItems()
     {
